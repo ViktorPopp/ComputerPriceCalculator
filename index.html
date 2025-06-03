@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dropdown med priser</title>
+  <style>
+    /* Light / blue theme */
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #e6f0fa;
+      color: #1a3c72;
+      margin: 0;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 2rem;
+      color: #124080;
+    }
+
+    .dropdown-container {
+      max-width: 400px;
+      margin: 0 auto 3rem;
+      background: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(26, 60, 114, 0.2);
+      padding: 1.5rem 2rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.5rem 0.8rem;
+      font-size: 1rem;
+      border: 1.5px solid #a2b4db;
+      border-radius: 6px;
+      background-color: #f0f6ff;
+      color: #1a3c72;
+      margin-bottom: 1.5rem;
+      transition: border-color 0.3s;
+      cursor: pointer;
+    }
+
+    select:hover, select:focus {
+      border-color: #124080;
+      outline: none;
+    }
+
+    .total {
+      max-width: 400px;
+      margin: 0 auto;
+      background: #d6e3fc;
+      border-radius: 8px;
+      padding: 1rem 2rem;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #0d2548;
+      box-shadow: 0 1px 6px rgba(18, 64, 128, 0.3);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <h1>Vælg produkter</h1>
+
+  <div class="dropdown-container">
+    <label for="dropdown1">Produkt 1</label>
+    <select id="dropdown1" onchange="updateTotal()">
+      <option value="0">-- Vælg --</option>
+      <option value="100">Titel A - 100 kr</option>
+      <option value="150">Titel B - 150 kr</option>
+      <option value="200">Titel C - 200 kr</option>
+    </select>
+
+    <label for="dropdown2">Produkt 2</label>
+    <select id="dropdown2" onchange="updateTotal()">
+      <option value="0">-- Vælg --</option>
+      <option value="80">Titel D - 80 kr</option>
+      <option value="130">Titel E - 130 kr</option>
+      <option value="170">Titel F - 170 kr</option>
+    </select>
+
+    <label for="dropdown3">Produkt 3</label>
+    <select id="dropdown3" onchange="updateTotal()">
+      <option value="0">-- Vælg --</option>
+      <option value="90">Titel G - 90 kr</option>
+      <option value="120">Titel H - 120 kr</option>
+      <option value="160">Titel I - 160 kr</option>
+    </select>
+  </div>
+
+  <div class="total">
+    Total pris: <span id="totalPrice">0</span> kr
+  </div>
+
+  <script>
+    function updateTotal() {
+      const dropdowns = ['dropdown1', 'dropdown2', 'dropdown3'];
+      let total = 0;
+      dropdowns.forEach(id => {
+        const select = document.getElementById(id);
+        total += Number(select.value);
+      });
+      document.getElementById('totalPrice').textContent = total;
+    }
+  </script>
+</body>
+</html>
